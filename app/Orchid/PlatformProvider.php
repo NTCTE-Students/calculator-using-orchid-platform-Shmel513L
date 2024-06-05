@@ -9,6 +9,7 @@ use Orchid\Platform\ItemPermission;
 use Orchid\Platform\OrchidServiceProvider;
 use Orchid\Screen\Actions\Menu;
 use Orchid\Support\Color;
+use Orchid\Screen\Actions\Link;
 
 class PlatformProvider extends OrchidServiceProvider
 {
@@ -103,6 +104,20 @@ class PlatformProvider extends OrchidServiceProvider
             ItemPermission::group(__('System'))
                 ->addPermission('platform.systems.roles', __('Roles'))
                 ->addPermission('platform.systems.users', __('Users')),
+        ];
+    }
+    public function registerMainMenu(): array
+    {
+        return [
+            Menu::make('Calculator')
+                ->icon('calculator')
+                ->route('platform.calculator')
+                ->active('platform/calculator*'),
+    
+            Menu::make('Physical Calculator')
+                ->icon('compass')
+                ->route('platform.physical-calculator')
+                ->active('platform/physical-calculator*'),
         ];
     }
 }

@@ -19,6 +19,8 @@ use App\Orchid\Screens\User\UserListScreen;
 use App\Orchid\Screens\User\UserProfileScreen;
 use Illuminate\Support\Facades\Route;
 use Tabuna\Breadcrumbs\Trail;
+use App\Orchid\Screens\CalculatorScreen;
+use App\Orchid\Screens\PhysicalCalculatorScreen;
 
 /*
 |--------------------------------------------------------------------------
@@ -100,5 +102,14 @@ Route::screen('/examples/layouts', ExampleLayoutsScreen::class)->name('platform.
 Route::screen('/examples/grid', ExampleGridScreen::class)->name('platform.example.grid');
 Route::screen('/examples/charts', ExampleChartsScreen::class)->name('platform.example.charts');
 Route::screen('/examples/cards', ExampleCardsScreen::class)->name('platform.example.cards');
+Route::screen('calculator', CalculatorScreen::class)->name('platform.calculator');
+Route::screen('physical-calculator', PhysicalCalculatorScreen::class)->name('platform.physical-calculator');
+// Маршруты запроса ссылки для сброса пароля
+Route::get('password/email', 'Auth\PasswordController@getEmail');
+Route::post('password/email', 'Auth\PasswordController@postEmail');
+
+// Маршруты сброса пароля
+Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
+Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 //Route::screen('idea', Idea::class, 'platform.screens.idea');
