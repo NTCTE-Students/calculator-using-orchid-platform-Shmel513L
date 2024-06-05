@@ -38,13 +38,16 @@ class CalculatorScreen extends Screen
                 Label::make('result')
                     ->title('Result'),
             ]),
-            Layout::table('history', [
-                'Expression' => 'expression',
-                'Result' => 'result',
-                'Timestamp' => 'created_at',
-            ]),
+            Table::make('history')
+                ->columns([
+                    TD::set('expression', 'Expression'),
+                    TD::set('result', 'Result'),
+                    TD::set('created_at', 'Timestamp'),
+                ]),
         ];
     }
+
+    
 
     public function calculate(Request $request)
     {
